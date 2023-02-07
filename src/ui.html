@@ -1,0 +1,64 @@
+<div id="react-page"></div>
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="download">Download</button>
+  </body>
+  <script>
+    const button = document.getElementById("download");
+    button.addEventListener("click", () => {
+        console.log('clicked');
+      parent.postMessage({pluginMessage:{ type: "download" }}, "*");
+    });
+    // parent.postMessage({ pluginMessage: 'anything here' }, '*')
+    
+onmessage = async event => {
+  const msg = event.data.pluginMessage;
+  console.log(msg.type);
+  if (msg.type === "download") {
+    console.log("download");
+    var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(msg.content));
+  element.setAttribute('download', 'frame');
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+  }
+  if(msg.type === "img"){
+    const bytes = msg.bytes;
+    
+    async function blobToDataURL(blob) {
+    return new Promise((resolve, reject) => {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+        resolve(e.target.result);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+    });
+    }
+    const url = await blobToDataURL(new Blob([bytes]))
+    parent.postMessage({pluginMessage:{ type: "src", url }}, "*");
+  }
+};
+
+  </script>
+</html> -->
